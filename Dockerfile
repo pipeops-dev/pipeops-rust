@@ -5,13 +5,13 @@ FROM rust:latest as build
 WORKDIR /app
 
 # Copy the Cargo.toml and Cargo.lock files to the container
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml Cargo.lock 
 
 # Create an empty project with the same dependencies to cache them
 RUN mkdir src && \
     echo "fn main() {println!(\"if you see this, the build broke\")}" > src/main.rs && \
     cargo build --release && \
-    rm -f target/release/deps/rust_web_project*
+    rm -f target/release/deps/pipeops-rust*
 
 # Copy the rest of the source code to the container
 COPY . .
@@ -26,7 +26,7 @@ FROM debian:buster-slim
 WORKDIR /app
 
 # Copy the built application from the build image to the final image
-COPY --from=build /app/target/release/your_rust_web_project .
+COPY --from=build /app/target/release/pipeops-rust .
 
 # Expose the port your Rust web application listens on (change as needed)
 EXPOSE 8000
