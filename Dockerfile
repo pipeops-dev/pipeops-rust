@@ -5,7 +5,7 @@ FROM rust:latest as build
 WORKDIR /app
 
 # Copy the Cargo.toml and Cargo.lock files to the container
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml ./
 
 # Create an empty project with the same dependencies to cache them
 RUN mkdir src && \
