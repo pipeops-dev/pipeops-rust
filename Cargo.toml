@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 axum = "0.6.20"
+actix-web = "4.0.0-beta.8"
 minijinja = { version = "1.0.6", features = ["builtins"] }
 serde = { version = "1.0.185", features = ["derive"] }
 tokio = { version = "1.32.0", features = ["full"] }
