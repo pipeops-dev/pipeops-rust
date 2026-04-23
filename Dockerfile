@@ -1,9 +1,12 @@
 # Use the official Rust image as a builder
-FROM rust:1.85-slim AS builder
+FROM rust:latest AS builder
 
 # Create a new empty shell project
 WORKDIR /usr/src/app
 COPY . .
+
+# Check cargo version to debug
+RUN cargo --version
 
 # Build the application
 RUN cargo build --release
@@ -11,7 +14,7 @@ RUN cargo build --release
 # Use a smaller image for the final runtime
 FROM debian:bookworm-slim
 
-# Install necessary libraries (like OpenSSL if needed, though actix-web often doesn't need much)
+# Install necessary libraries
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Copy the build artifact from the builder stage

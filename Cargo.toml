@@ -4,7 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-actix-web = "4.9.0"
+# Using a slightly older version of actix-web to avoid transitive dependencies 
+# that require Rust Edition 2024 (like sha1 0.11.0 and time-core 0.1.8)
+actix-web = "4.4.0"
 minijinja = { version = "1.0.6", features = ["builtins"] }
 serde = { version = "1.0.185", features = ["derive"] }
 tokio = { version = "1.32.0", features = ["full"] }
